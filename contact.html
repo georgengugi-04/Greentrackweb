@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — GreenTrack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/logo-icon.png">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="widget.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="brand" style="color:inherit;">
+      <div class="brand-mark">
+        <img src="assets/logo-icon.png" alt="GreenTrack logo" class="brand-mark-img">
+      </div>
+      <div class="brand-name">green<span>track</span>.</div>
+    </a>
+    <nav class="links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="features.html">Features</a>
+      <a href="stories.html">Stories</a>
+      <a href="download.html">Download</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="contact.html" style="color:var(--cream);">Contact</a>
+    </nav>
+    <a href="download.html"><button class="nav-cta">Download App</button></a>
+    <button class="nav-toggle" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="crumb"><a href="index.html">Home</a> / Contact</div>
+  <span class="mono">Get in touch</span>
+  <h1>Talk to the GreenTrack team</h1>
+  <p>Questions about the app, a partnership, or a batch that isn't scanning right — reach out.</p>
+</section>
+
+<section class="privacy" style="padding-top:90px;">
+  <div class="contact-cards">
+    <div class="ccard reveal">
+      <div class="cicon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4z" stroke="currentColor" stroke-width="1.6"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="1.6"/></svg></div>
+      <b>Email</b>
+      <a href="mailto:hello@greentrack.africa">hello@greentrack.africa</a>
+    </div>
+    <div class="ccard reveal">
+      <div class="cicon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke="currentColor" stroke-width="1.6"/></svg></div>
+      <b>WhatsApp</b>
+      <a href="https://wa.me/2547XXXXXXXX" target="_blank" rel="noopener">Chat with us directly</a>
+    </div>
+    <div class="ccard reveal">
+      <div class="cicon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2l8 4v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6l8-4z" stroke="currentColor" stroke-width="1.6"/></svg></div>
+      <b>Based in</b>
+      <span>Nairobi, Kenya</span>
+    </div>
+  </div>
+
+  <div class="contact-layout reveal">
+    <div>
+      <h2>Send a message</h2>
+      <p>This goes straight to the same inbox as the chat widget — expect a reply within a day or so.</p>
+      <div style="border-left:2px solid var(--sprout); padding-left:14px; font-size:13.5px; color:var(--ink-soft); line-height:1.6;">
+        Prefer something faster? Use the chat bubble in the bottom-right corner of any page — it's forwarded to WhatsApp right away.
+      </div>
+    </div>
+    <form class="big-form" onsubmit="event.preventDefault(); this.reset(); alert('Thanks — we will be in touch.');">
+      <input type="text" placeholder="Your name" required>
+      <input type="email" placeholder="Email address" required>
+      <input type="text" placeholder="Subject">
+      <textarea placeholder="Message" rows="5" required></textarea>
+      <button type="submit">Send message</button>
+    </form>
+  </div>
+</section>
+
+<footer id="contact-footer">
+  <div class="footer-grid">
+    <div class="footer-brand reveal">
+      <div class="brand">
+        <div class="brand-mark">
+          <img src="assets/logo-icon.png" alt="GreenTrack logo" class="brand-mark-img">
+        </div>
+        <div class="brand-name">green<span>track</span>.</div>
+      </div>
+      <p>Cultivating conscious consumption — one verified batch at a time.</p>
+    </div>
+    <div class="footer-col reveal">
+      <h4>Product</h4>
+      <a href="features.html">Features</a>
+      <a href="stories.html">Stories</a>
+      <a href="about.html">The Journey</a>
+      <a href="download.html">Download</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+    <div class="footer-col reveal">
+      <h4>Company</h4>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col reveal">
+      <h4>Get in touch</h4>
+      <a href="contact.html">Contact form →</a>
+      <a href="mailto:hello@greentrack.africa">hello@greentrack.africa</a>
+      <a href="https://wa.me/2547XXXXXXXX" target="_blank" rel="noopener">Chat on WhatsApp</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 GreenTrack. All rights reserved.</span>
+    <span>Nairobi, Kenya</span>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.querySelector('nav.links');
+  toggle.addEventListener('click', () => {
+    const open = links.style.display === 'flex';
+    links.style.display = open ? 'none' : 'flex';
+    links.style.flexDirection = 'column';
+    links.style.position='absolute'; links.style.top='64px'; links.style.left='0'; links.style.right='0';
+    links.style.background='rgba(23,50,38,0.98)'; links.style.padding='20px 32px'; links.style.gap='16px';
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+<script>
+  window.GREENTRACK_API_BASE = "http://localhost:4000";
+  window.GREENTRACK_WHATSAPP_NUMBER = "2547XXXXXXXX";
+</script>
+
+<a href="https://wa.me/254700110527" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.82L2 22l5.44-1.42a9.87 9.87 0 004.6 1.17h.01c5.46 0 9.9-4.45 9.9-9.9C21.96 6.45 17.5 2 12.04 2zm5.8 14.02c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.13.11-1.82-.11-.42-.13-.96-.3-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.82 2 .9 2.14.07.15.12.32.02.51-.1.19-.15.31-.3.48-.14.17-.31.37-.44.5-.15.14-.3.3-.13.58.17.29.76 1.25 1.63 2.02 1.12 1 2.06 1.31 2.35 1.46.29.15.46.13.63-.05.17-.19.72-.84.91-1.13.19-.29.38-.24.63-.14.26.1 1.65.78 1.93.92.29.14.48.22.55.34.07.13.07.71-.17 1.39z"/></svg>
+</a>
+<script src="widget.js"></script>
+
+</body>
+</html>

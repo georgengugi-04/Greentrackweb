@@ -5,8 +5,8 @@
  *
  * Configure these two lines before deploying:
  */
-window.GREENTRACK_API_BASE = window.GREENTRACK_API_BASE || "http://localhost:4000";
-window.GREENTRACK_WHATSAPP_NUMBER = window.GREENTRACK_WHATSAPP_NUMBER || "2547XXXXXXXX";
+window.GREENTRACK_API_BASE = window.GREENTRACK_API_BASE || "https://greentrackweb-production.up.railway.app";
+window.GREENTRACK_WHATSAPP_NUMBER = window.GREENTRACK_WHATSAPP_NUMBER || "254700110527";
 
 (function () {
   const API = window.GREENTRACK_API_BASE;

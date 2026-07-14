@@ -68,7 +68,6 @@ window.GREENTRACK_WHATSAPP_NUMBER = window.GREENTRACK_WHATSAPP_NUMBER || "254700
             <input type="text" name="name" placeholder="Your name" required>
             <input type="email" name="email" placeholder="Email (optional)">
             <small>Just so we know who's asking. Saved on this device only.</small>
-            <button type="submit" style="display:none"></button>
           </form>
           <form class="gt-composer">
             <input type="text" name="body" placeholder="Type a message…" autocomplete="off" required>
@@ -174,15 +173,41 @@ window.GREENTRACK_WHATSAPP_NUMBER = window.GREENTRACK_WHATSAPP_NUMBER || "254700
   });
 
   composerForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const data = new FormData(composerForm);
-    const body = String(data.get("body") || "").trim();
-    if (!body) return;
+  e.preventDefault();
+  const data = new FormData(composerForm);
+  const body = String(data.get("body") || "").trim();
+  if (!body) return;
 
-    if (!contact) {
+  if (!contact) {
+    const nameInput = precontactForm.querySelector('input[name="name"]');
+    const emailInput = precontactForm.querySelector('input[name="email"]');
+    const name = (nameInput.value || "").trim();
+    if (!name) {
       precontactForm.style.display = "flex";
+      nameInput.focus();
       return;
     }
+    contact = { name, email: (emailInput.value || "").trim() };
+    localStorage.setItem("gt_contact", JSON.stringify(contact));
+    precontactForm.style.display = "none";
+  }
+
+  composerForm.querySelector("input").value = "";
+  // Optimistic render
+  const optimistic = { sender: "user", body, createdAt: new Date().toISOString() };
+  renderMessages([...(await currentMessagesOrEmpty()), optimistic]);
+
+  try {
+    await fetch(`${API}/api/chat/messages`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ sessionId, name: contact.name, email: contact.email, body }),
+    });
+    loadChatHistory();
+  } catch {
+    messagesEl.appendChild(el(`<div class="gt-empty">Couldn't reach the server — try again shortly, or use WhatsApp directly.</div>`));
+  }
+});
 
     composerForm.querySelector("input").value = "";
     // Optimistic render

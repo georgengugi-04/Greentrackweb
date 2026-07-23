@@ -1,7 +1,7 @@
 {
   "name": "greentrack-backend",
   "version": "1.0.0",
-  "description": "GreenTrack site backend — chat widget with WhatsApp forwarding, GitHub webhook activity feed, and two-way Notion sync",
+  "description": "GreenTrack site backend — chat widget with WhatsApp forwarding",
   "main": "src/index.js",
   "type": "commonjs",
   "scripts": {
@@ -12,7 +12,6 @@
     "prisma:studio": "prisma studio"
   },
   "dependencies": {
-    "@notionhq/client": "^2.2.15",
     "@prisma/client": "^5.19.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

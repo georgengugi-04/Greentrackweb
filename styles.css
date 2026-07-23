@@ -464,50 +464,84 @@
 }
 
 /* ---------- TEAM SECTION ---------- */
-.team-grid{
-  display:grid; grid-template-columns:repeat(2, 1fr); gap:20px;
-  max-width:920px; margin:0 auto;
+/* Single row of circular "chips" — name + role only, at rest.
+   Hovering (desktop) or tapping (touch) reveals a fuller profile
+   card, the way Instagram's web hover-card works over a username. */
+.team-row{
+  display:flex; flex-wrap:wrap; justify-content:center; align-items:flex-start;
+  gap:34px 26px; max-width:760px; margin:0 auto;
 }
-.team-card{
-  display:flex; align-items:center; gap:22px; text-align:left;
-  background:#fff; border:1px solid var(--line); border-radius:18px;
-  padding:26px 28px; box-shadow:var(--shadow);
-  opacity:0; transition:opacity .85s ease, transform .85s cubic-bezier(.16,1,.3,1);
+.team-chip{ position:relative; width:128px; }
+.team-chip-trigger{
+  display:flex; flex-direction:column; align-items:center; gap:4px;
+  width:100%; background:none; border:none; padding:0; margin:0;
+  font:inherit; color:inherit; cursor:pointer; text-align:center;
 }
-.team-card.from-left{transform:translateX(-70px);}
-.team-card.from-right{transform:translateX(70px);}
-.team-card.from-bottom{transform:translateY(70px);}
-.team-card.in{opacity:1; transform:translate(0,0);}
-.team-avatar{
-  position:relative; width:112px; height:112px; border-radius:50%; flex-shrink:0;
-  overflow:hidden; background:linear-gradient(155deg, var(--sprout), var(--moss));
-  box-shadow:0 6px 18px rgba(27,33,24,0.18); transition:transform .3s ease;
+.team-chip-trigger:focus-visible{
+  outline:2px solid var(--sprout); outline-offset:6px; border-radius:14px;
 }
-.team-card:hover .team-avatar{transform:scale(1.04);}
-.team-avatar img{width:100%; height:100%; object-fit:cover; display:block;}
-.team-avatar .team-links{
-  position:absolute; inset:0; border-radius:50%;
-  background:rgba(19,36,26,0.86);
-  display:flex; align-items:center; justify-content:center; gap:11px;
-  opacity:0; transition:opacity .3s ease;
+.team-chip-avatar{
+  width:88px; height:88px; border-radius:50%; overflow:hidden; margin-bottom:6px;
+  background:linear-gradient(155deg, var(--sprout), var(--moss));
+  box-shadow:0 6px 16px rgba(27,33,24,0.18);
+  border:3px solid #fff; outline:2px solid var(--line);
+  transition:transform .25s ease, outline-color .25s ease;
 }
-.team-avatar:hover .team-links{opacity:1;}
-.team-avatar .team-links a{
-  width:24px; height:24px; color:#F6F2E7; display:flex; align-items:center; justify-content:center;
+.team-chip-avatar img{width:100%; height:100%; object-fit:cover; display:block;}
+.team-chip:hover .team-chip-avatar,
+.team-chip.active .team-chip-avatar{transform:scale(1.06); outline-color:var(--sprout);}
+.team-chip-name{font-size:14px; font-weight:700; line-height:1.25;}
+.team-chip-sub{font-size:12px; color:var(--ink-soft);}
+
+/* Card content — shared by both the mobile accordion and the
+   desktop floating popover. */
+.team-hover-card{
+  background:#fff; border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow);
+  text-align:left;
 }
-.team-avatar .team-links svg{width:100%; height:100%;}
-.team-card h3{font-size:16.5px; margin-bottom:2px;}
-.team-card .team-role{display:block; font-size:13.5px; color:var(--ink-soft); margin-bottom:6px;}
-.team-card .team-email{
-  display:inline-block; font-size:13px; color:var(--moss); font-weight:600;
-  text-decoration:none; margin-bottom:6px;
+.team-hover-inner{padding:18px 20px;}
+.team-hover-top{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px;}
+.team-hover-top img{width:44px; height:44px; border-radius:50%; object-fit:cover; flex-shrink:0;}
+.team-hover-links{display:flex; gap:12px;}
+.team-hover-links a{width:19px; height:19px; color:var(--moss); display:flex;}
+.team-hover-links svg{width:100%; height:100%;}
+.team-hover-card h3{font-size:15.5px; margin-bottom:2px;}
+.team-hover-card .team-role{display:block; font-size:13px; color:var(--ink-soft); margin-bottom:8px;}
+.team-hover-card .team-school{display:flex; align-items:center; gap:6px; font-size:12px; color:var(--ink-soft); margin-bottom:8px;}
+.team-hover-card .team-email{font-size:12.5px; font-weight:600; color:var(--moss); text-decoration:none;}
+.team-hover-card .team-email:hover{color:var(--sprout);}
+
+/* Mobile / touch default: tapping a chip expands the card inline,
+   accordion-style, since there's no hover to rely on. */
+.team-hover-card{
+  max-height:0; opacity:0; margin-top:0; overflow:hidden;
+  transition:max-height .3s ease, opacity .25s ease, margin-top .3s ease;
 }
-.team-card .team-email:hover{color:var(--sprout);}
-.team-card .team-school{
-  display:flex; align-items:center; gap:6px; font-size:12.5px; color:var(--ink-soft);
+.team-chip.active .team-hover-card{max-height:320px; opacity:1; margin-top:14px;}
+
+/* Desktop with a real mouse: the card floats over the page like an
+   Instagram profile hover-card, with a short delay before it opens. */
+@media (hover:hover) and (pointer:fine) and (min-width:640px){
+  .team-hover-card{
+    position:absolute; top:100%; left:50%; z-index:40;
+    width:272px; margin-top:0; max-height:none; overflow:visible;
+    opacity:0; pointer-events:none;
+    transform:translate(-50%, 6px);
+    transition:opacity .18s ease, transform .18s ease;
+    transition-delay:0s;
+  }
+  .team-chip:hover .team-hover-card,
+  .team-chip:focus-within .team-hover-card,
+  .team-chip.active .team-hover-card{
+    opacity:1; pointer-events:auto;
+    transform:translate(-50%, 14px);
+    transition-delay:.35s;
+  }
 }
-@media (max-width:720px){
-  .team-grid{grid-template-columns:1fr;}
+@media (max-width:480px){
+  .team-row{gap:26px 18px;}
+  .team-chip{width:104px;}
+  .team-chip-avatar{width:74px; height:74px;}
 }
 
 /* ---------- COLLABORATORS ---------- */

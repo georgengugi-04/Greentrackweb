@@ -5,8 +5,6 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 
 const chatRoutes = require("./routes/chat");
-const githubRoutes = require("./routes/github");
-const notionRoutes = require("./routes/notion");
 
 const app = express();
 
@@ -26,15 +24,8 @@ app.use(
   })
 );
 
-// The GitHub webhook route needs the RAW body to verify GitHub's signature,
-// so it gets its own parser and must be registered BEFORE express.json().
-app.use("/api/github/webhook", express.raw({ type: "application/json" }));
-app.use("/api/github", githubRoutes);
-
-// Everything else uses normal JSON parsing.
 app.use(express.json({ limit: "1mb" }));
 app.use("/api/chat", chatRoutes);
-app.use("/api/notion", notionRoutes);
 
 app.get("/health", (req, res) => res.json({ ok: true, service: "greentrack-backend" }));
 
